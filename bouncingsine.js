@@ -1,5 +1,5 @@
 var r, angle, x1, y1, x2, y2, a1, a2, noise1, noise2, stop;
-
+var a,b;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -25,14 +25,21 @@ function setup() {
   if(mult == 0){mult = 1;}
   stop = 180*mult;
   noFill();
+  if(width > height){
+	  a = width;
+	  b = height;
+  }else{
+	  a = height;
+	  b = width;
+  }
 }
 
 
 function draw(){
     var l = sqrt(pow((x2-x1),2) + pow((y2-y1),2));
-    stroke(map(l, 0, 700, 60,255),
-    map(abs(x1-y2), 0, 700*0.5, 60,255),
-    map(abs(y1-x2), 0, 700*0.5, 60,255), 90);
+    stroke(map(l, 0, b, 60,255),
+    map(abs(x1-y2), 0, a*0.5, 60,255),
+    map(abs(y1-x2), 0, a*0.5, 60,255), 90);
     var m = atan((y1-y2)/(x1-x2));
     if(x1 < x2){
       sinFunc(x1, y1, l, m,0,stop);
